@@ -4,12 +4,7 @@ const express = require("express");
 const verifyEmail = (req, res) => {
     const {_email} = req.body;
     try {
-        const domain =_email.split('@')[1];
-        console.log(domain);
-    
-        if (domain.endsWith('edu.com')) {
-          console.log('Email domain is a valid .edu domain. Sending request...');
-    
+
           const options = {
           method: 'POST',
           url: 'https://withpaper.com/api/2022-08-12/checkout-link-intent',
@@ -30,12 +25,12 @@ const verifyEmail = (req, res) => {
             requireVerifiedEmail: true,
             quantity: 1,
             metadata: {},
-            mintMethod: {
-              name: 'claimTo',
-              args: {_to: '$WALLET', _quantity: '$QUANTITY', _tokenId: 0},
-              payment: {currency: 'MATIC', value: '0.001 * $QUANTITY'}
-            },
-            eligibilityMethod: {args: {METHOD_ARG_NAME: 'Unknown Type: mixed type'}, name: 'string'},
+            // mintMethod: {
+            //   name: 'claimTo',
+            //   args: {_to: '$WALLET', _quantity: '$QUANTITY', _tokenId: 0},
+            //   payment: {currency: 'MATIC', value: '0.001 * $QUANTITY'}
+            // },
+            // eligibilityMethod: {args: {METHOD_ARG_NAME: 'Unknown Type: mixed type'}, name: 'string'},
             feeBearer: 'BUYER',
             hideNativeMint: false,
             hidePaperWallet: false,
@@ -44,12 +39,12 @@ const verifyEmail = (req, res) => {
             hidePayWithCrypto: false,
             hidePayWithIdeal: true,
             sendEmailOnTransferSucceeded: true,
-            twitterHandleOverride: 'string',
-            successCallbackUrl: 'string',
-            cancelCallbackUrl: 'string',
-            walletAddress: 'string',
+            // twitterHandleOverride: 'string',
+            // successCallbackUrl: 'string',
+            // cancelCallbackUrl: 'string',
+            // walletAddress: 'string',
             email: _email,
-            contractArgs: 'string'
+            // contractArgs: 'string'
           }
         };
         axios
@@ -64,14 +59,7 @@ const verifyEmail = (req, res) => {
             message: "An error occured",
             error
           })
-        });
-        } else {
-          console.log('Email domain is not a valid .edu domain. Request not sent.');
-          res.status(500).json({
-            message: "Email is Not valid"
-          })
-          // Handle the case when the email is not a valid student email
-        }
+        }); 
       } catch (error) {
         console.error('Error occurred during email verification:', error);
         res.status(500).json({
@@ -88,3 +76,5 @@ const router = express.Router();
 router.post("/api/verifyEmail", verifyEmail);
 
 module.exports = router;
+
+
