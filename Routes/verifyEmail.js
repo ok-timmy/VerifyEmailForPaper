@@ -1,5 +1,8 @@
 const axios = require("axios");
 const express = require("express");
+const dotenv = require("dotenv")
+
+dotenv.config();
 
 const verifyEmail = (req, res) => {
     const {_email} = req.body;
@@ -11,10 +14,10 @@ const verifyEmail = (req, res) => {
           headers: {
             accept: 'application/json',
             'content-type': 'application/json',
-            Authorization: 'Bearer f38fd6a4-8ff0-47c2-a40c-e94e39fb80c7'
+            Authorization: `Bearer ${process.env.API_KEY}`
           },
           data: {
-            contractId: '4299ccb3-7918-4b21-9913-09a1992ddbff',
+            contractId: `${process.env.CONTRACT_ID}`,
             title: 'Mumbai Example',
             description: 'Describe your project *with Markdown!*',
             imageUrl: 'https://unsplash.it/240/240',

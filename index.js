@@ -1,6 +1,5 @@
 const express = require("express");
 const verifyEmailRoute = require("./Routes/verifyEmail");
-
 const cors = require("cors");
 
 const app = express();
