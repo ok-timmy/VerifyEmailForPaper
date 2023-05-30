@@ -83,7 +83,7 @@ app.get("/", (req, res)=>{
   res.json({message: " This works, thank God"});
 })
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port 5000`);
