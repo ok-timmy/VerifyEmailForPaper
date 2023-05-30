@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
-app.post("/api/verifyEmail", (req, res) => {
+app.post("/api/verifyEmail/", (req, res) => {
   const {_email} = req.body;
   try {
 
