@@ -1,5 +1,5 @@
 const express = require("express");
-const verifyEmailRoute = require("./Routes/verifyEmail");
+// const verifyEmailRoute = require("./Routes/verifyEmail");
 const cors = require("cors");
 const dotenv = require("dotenv")
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
-app.post("/", (req, res) => {
+app.post("/api/verifyEmail", (req, res) => {
   const {_email} = req.body;
   try {
 
